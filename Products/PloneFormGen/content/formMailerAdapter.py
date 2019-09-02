@@ -726,6 +726,12 @@ class FormMailerAdapter(FormActionAdapter):
                         file.seek(0)  # rewind
                         data = file.read()
                         filename = file.filename
+                        filename_prefix_field = getattr(field, 'fgFileNamePrefix', u'')
+                        fnprefix = u''
+                        if filename_prefix_field != u'':
+                            fnprefix = request.form.get(filename_prefix_field, '')
+                        if fnprefix:
+                            filename = '%s_%s' % (fnprefix, filename)
                         mimetype, enc = guess_content_type(filename, data, None)
                         attachments.append((filename, mimetype, enc, data))
         return attachments

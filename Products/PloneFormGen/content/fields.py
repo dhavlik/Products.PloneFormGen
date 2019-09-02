@@ -1210,6 +1210,16 @@ class FGFileField(BaseFormField):
                 description=_(u'help_filemaxmb_text', default=u"""Set to 0 for no limit."""),
                 ),
         ),
+        StringField('fgFileNamePrefix',
+            searchable=0,
+            required=0,
+            default=0,
+            widget=StringWidget(
+                label=_(u'label_filenameprefix_text', default=u'Field with filename prefix.'),
+                description=_(u'help_filemaxmb_text', default=u"""The input of the given field will be used as a prefix for the filename."""),
+                ),
+        ),
+
 
     ))
 
